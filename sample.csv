@@ -1,0 +1,37 @@
+MetricName,PromQLQuery,Approved,StatOperation
+"Min. Latency (ms)
+(P95)","histogram_quantile(0.95,sum(rate(oe_grpc_server_handling_seconds_bucket{k8s_pod=~""offers-engine-live.*"", kubernetes_namespace=""offers-engine""}[5m])) by (le)) * 1000",,MIN
+"Max Latency (ms)
+(P95)","histogram_quantile(0.95,sum(rate(oe_grpc_server_handling_seconds_bucket{k8s_pod=~""offers-engine-live.*"", kubernetes_namespace=""offers-engine""}[5m])) by (le)) * 1001",,MAX
+"Avg. Latency (ms)
+(P95)","histogram_quantile(0.95,sum(rate(oe_grpc_server_handling_seconds_bucket{k8s_pod=~""offers-engine-live.*"", kubernetes_namespace=""offers-engine""}[5m])) by (le)) * 1002",,MEAN
+"Min. Latency (ms)
+Edge (P95)",,,
+"Max Latency (ms)
+Edge (P95)",,,
+"Avg. Latency (ms)
+Edge (P95)",,,
+"Min. Latency (ms)
+traefik (P95)",,,
+"Max Latency (ms)
+traefik (P95)",,,
+"Avg. Latency (ms)
+traefik (P95)",,,
+Min. RPS,"sum(rate(oe_server_requests_total{k8s_pod=~"".*offers-engine.*"",kubernetes_namespace=~""offers-engine""}[1m]))",,MIN
+Max RPS,"sum(rate(oe_server_requests_total{k8s_pod=~"".*offers-engine.*"",kubernetes_namespace=~""offers-engine""}[1m]))",,MAX
+Avg. RPS,"sum(rate(oe_server_requests_total{k8s_pod=~"".*offers-engine.*"",kubernetes_namespace=~""offers-engine""}[1m]))",,MEAN
+% of 5xx,,,
+% of Non 2xx,,,
+Weekly anomaly - Latency (p95) (ms),,,
+Weekly anomaly - 5xx Errors,,,
+Weekly anomaly - 4xx Errors,,,
+Max CPU,"max((sum(rate(container_cpu_usage_seconds_total{pod=~"".*offers-engine-live.*"",namespace=""offers-engine""}[5m])) by (pod)))",,MAX
+Avg. CPU,"max((sum(rate(container_cpu_usage_seconds_total{pod=~"".*offers-engine-live.*"",namespace=""offers-engine""}[5m])) by (pod)))",,MEAN
+Max Memory,"max(sum(container_memory_working_set_bytes{pod=~"".*offers-engine-live.*"",namespace=~""offers-engine"", container!=""""}) by (pod))",,MAX
+Avg. Memory,"max(sum(container_memory_working_set_bytes{pod=~"".*offers-engine-live.*"",namespace=~""offers-engine"", container!=""""}) by (pod))",,MEAN
+Max CPU,,,
+Avg. CPU,,,
+"Max Freeable Memory
+(GB)",,,
+"Avg. Freeable Memory
+(GB)",,,
