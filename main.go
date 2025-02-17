@@ -31,4 +31,6 @@ func main() {
 	if err != nil {
 		fmt.Println("Error in converting to csv")
 	}
+
+	fmt.Println("OPEX Sheet generated!!")
 }
